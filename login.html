@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn</title>
+    <style>
+        *{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        #login {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            margin: auto;
+            padding: 20px;
+            row-gap: 10px;
+            border-radius: 5px;
+            border: 1px solid black;
+        }
+        #login input {
+            padding: 5px;
+        }
+
+        #submit{
+            background-color: rgb(247, 228, 126);
+            border: none;
+            font-size: 20px;
+            border: 1px solid black;
+            cursor:pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">LogIn</h1>
+    
+        <form  id="login">
+            <label>Email </label>
+            <input type = "email" id = "email" required/>
+            <label>Password </label>
+            <input type = "password" id = "password" required/>
+            <input type = "submit" value = "LogIn" id = "submit" required/>
+        </form>
+
+</body>
+
+<script>
+    var form = document.querySelector("#login");
+    form.addEventListener("submit",getData);
+
+        
+
+    function getData(){
+
+        event.preventDefault();
+
+        var email = document.querySelector("#email").value;
+        var password = document.querySelector("#password").value;
+
+        var flag = 1;
+
+        dataArr = JSON.parse(localStorage.getItem("data"));
+
+        dataArr.forEach(element => {
+
+            
+            if(email == element.email && password == element.password){
+                    alert("Login Success");
+                    flag = 0;
+                    return;
+            }
+        });
+
+        if(flag){
+            alert("!! Wrong Email or Password !!");
+        }
+
+    }
+</script>
+</html>
